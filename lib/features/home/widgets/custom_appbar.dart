@@ -7,7 +7,7 @@ import '../../../helpers/config.dart';
 
 AppBar customAppBar(){
   return AppBar(
-        title: Text(Config.appName),
+        title: Text(Get.find<Config>().appName),
         actions: [
            IconButton(onPressed: (){
             Get.toNamed('/signin');
