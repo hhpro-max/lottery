@@ -1,18 +1,17 @@
-import 'dart:io';
+
 
 import 'package:get/get.dart';
 
 class Config{
   String appName = "lottery";
-  var theme = Get.isDarkMode.obs;
-  
-//app path
+  //app path
   String mainDirectory;
   //route names
   String homePageRouteName = '/';
   String signinPageRouteName = '/signin';
   //server connection configs
   String serverUrl = "http://localhost:3000";
+  var waitingForLoginRes = false.obs;
 
   Config({required this.mainDirectory});
 }

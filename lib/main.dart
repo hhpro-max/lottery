@@ -17,6 +17,7 @@ void main() {
     getPages: [
       GetPage(name: config.homePageRouteName, page: ()=>HomeScreen()),
       GetPage(name: config.signinPageRouteName, page: ()=>SigninScreen())
+      
     ],
     theme: lightTheme,
     darkTheme: darkTheme,
