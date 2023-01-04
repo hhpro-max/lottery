@@ -12,6 +12,12 @@ ThemeData lightTheme = ThemeData.light().copyWith(
   drawerTheme: DrawerThemeData(
     backgroundColor: CustomColors.ltBackGround1,
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: MaterialStateColor.resolveWith((states) => CustomColors.ltElevatedButton),
+textStyle: MaterialStateTextStyle.resolveWith((states) => TextStyle(color: CustomColors.ltEBTextColor))
+      )
+  ),
   scaffoldBackgroundColor: CustomColors.ltBackGround2,
   textTheme: customTextTheme(),
   dividerColor: CustomColors.ltCommonWidget1,
@@ -20,6 +26,7 @@ ThemeData lightTheme = ThemeData.light().copyWith(
       foregroundColor: CustomColors.ltTextButton
     )
   ),
+  
 );
 // initial dark theme
 ThemeData darkTheme = ThemeData.dark().copyWith(
@@ -30,6 +37,12 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
   ),
   drawerTheme: DrawerThemeData(
     backgroundColor: CustomColors.dtBackGround1
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: MaterialStateColor.resolveWith((states) => CustomColors.dtElevatedButton),
+      textStyle: MaterialStateTextStyle.resolveWith((states) => TextStyle(color: CustomColors.dtEBTextColor))
+      )
   ),
   scaffoldBackgroundColor: CustomColors.dtBackGround2,
   textTheme: customTextTheme(),

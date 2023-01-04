@@ -9,7 +9,9 @@ AppBar customAppBar(){
   return AppBar(
         title: Text(Config.appName),
         actions: [
-           //todo
+           IconButton(onPressed: (){
+            Get.toNamed('/signin');
+           }, icon:const Icon(Icons.person))
         ],
       );
 }
