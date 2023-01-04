@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottery/common/widgets/custom_common_elevatedbutton.dart';
 import 'package:lottery/common/widgets/custom_common_textbutton.dart';
 import 'package:lottery/common/widgets/custom_common_textformfield.dart';
+import 'package:lottery/helpers/applogger/app_logger.dart';
 
 class SigninScreen extends StatelessWidget {
   const SigninScreen({super.key});
@@ -20,7 +21,7 @@ class SigninScreen extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          customCommonTextFormField(labelText: "User Name"),
+          customCommonTextFormField(labelText: "username or Email Address"),
           const SizedBox(
             height: 20,
           ),
