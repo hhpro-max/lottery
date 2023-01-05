@@ -5,11 +5,13 @@ import 'package:lottery/features/home/screens/home_screen.dart';
 import 'package:lottery/common/theme/custom_theme.dart';
 import 'package:lottery/helpers/applogger/app_logger.dart';
 import 'package:lottery/helpers/config.dart';
+import 'package:lottery/helpers/error_handler.dart';
 import 'package:path/path.dart' as path;
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Config config = Get.put<Config>(Config(mainDirectory: path.current));
   AppLogger appLogger = Get.put<AppLogger>(AppLogger());
+  ErrHandler errHandler = Get.put<ErrHandler>(ErrHandler());
   appLogger.logger.i("!APP IS RUNNING!");
   //config.initDirectory();
   runApp(GetMaterialApp(

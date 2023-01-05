@@ -1,7 +1,42 @@
-const {Router} = require('express');
+const { Router } = require('express');
 const authRoute = Router();
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+const bcryptjs = require('bcryptjs');
 
 
+authRoute.post('/signin', async (req, res) => {
+    try {
+        const { userName, password } = req.body;
+        let user = await User.findOne({ userName: userName });
+        if (!user) {
+            user = await User.findOne({ email: userName });
+            if (!user) {
+                return res.status(400).json({ err: "user is not exist" });
+            }
+        }
+        //logging
+        req.log.info(`USER TRYING TO SIGNIN -> \n ${user}`);
+        //
+        const isMatch = await bcryptjs.compare(password, user.password);
+        if (!isMatch) {
+            //logging
+            req.log.warn(`WRONG PASS FOR -> \n ${user}`);
+            //
+            return res.status(400).json({ err: "password is wrong" });
+        }
+        const token = jwt.sign({ id: user._id }, "passwordKey");
+        res.json({ token, user });
+        //logging
+        req.log.info(`USER SIGNINED IN -> \n ${user}`);
+        //
+    } catch (e) {
+        res.status(500).json({ err: e.message });
+        //logging
+        req.log.fatal(`ERR -> \n ${e}`);
+        console.log(e);
+        //
+    }
+})
 
 module.exports = authRoute;

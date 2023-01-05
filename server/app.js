@@ -5,6 +5,7 @@ const path = require('path');
 const dotEnv = require('dotenv');
 //import from local files
 const logger = require('./logs/logger');
+const authRoute = require('./routes/auth');
 // loading configs
 dotEnv.config(
     {
@@ -19,7 +20,7 @@ const dbURL = process.env.MONGO_URI;
 app.use(express.json());
 app.use(logger);
 //routes
-
+app.use('/auth',authRoute);
 //starting server
 setTimeout(
     ()=>{
