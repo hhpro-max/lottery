@@ -22,6 +22,12 @@ class AuthServices {
           body: jsonEncode({"userName": userName, "password": password}),
           headers: Get.find<UserProvider>().headers);
       Get.find<ErrHandler>().httpErrHandler(
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.of(context).pop();
+              Get.offNamed('/profile');
+            }, child: const Text("OK"))
+          ],
           response: response,
           onSuccess: () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -31,9 +37,10 @@ class AuthServices {
             //logging
             Get.find<AppLogger>().logger.i(
                 "user signed in successfuly -> ${Get.find<UserProvider>().user.toJson()} // with token ${prefs.getString('x-auth-token')}");
-
           },
-          context: context);
+          context: context,
+          
+          );
       Get.find<Config>().waitingForSigninRes.value = false;
     } catch (e) {
       Get.find<Config>().waitingForSigninRes.value = false;
@@ -63,6 +70,12 @@ class AuthServices {
           body: user.toJson(),
           headers: Get.find<UserProvider>().headers);
       Get.find<ErrHandler>().httpErrHandler(
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.of(context).pop();
+              Get.offNamed('/profile');
+            }, child: const Text("OK"))
+          ],
           response: response, onSuccess: () async{
             SharedPreferences prefs = await SharedPreferences.getInstance();
             Get.find<UserProvider>().setUser(response.body);
@@ -81,6 +94,6 @@ class AuthServices {
           .wtf("error in singup method in authservices -> \n $e");
       e.printError();
     }
-    //todo
+  
   }
 }

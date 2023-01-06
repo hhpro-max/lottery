@@ -33,7 +33,36 @@ authRoute.post('/signin', async (req, res) => {
     } catch (e) {
         res.status(500).json({ err: e.message });
         //logging
-        req.log.fatal(`ERR -> \n ${e}`);
+        req.log.fatal(`ERR IN SINGIN ROUTE -> \n ${e}`);
+        console.log(e);
+        //
+    }
+});
+
+authRoute.post('/signup', async (req, res) => {
+    try {
+        const { userName, password, email } = req.body;
+        let existingUser = await User.findOne({ userName });
+        if (existingUser) {
+            return res.status(400).json({ err: "userName is duplicated" });
+        }
+        const hashedPassword = await bcryptjs.hash(password, 8);
+        let user = new User({
+            email,
+            userName,
+            password:hashedPassword,
+            //cart:[]
+        });
+        user = await user.save();
+        const token = jwt.sign({ id: user._id }, "passwordKey");
+        res.json({ token, user });
+        //logging
+        req.log.info(`NEW USER SIGNED UP -> \n ${user}`);
+        //
+    } catch (e) {
+        res.status(500).json({ err: e.message });
+        //logging
+        req.log.fatal(`ERR IN SIGNUP ROUTE-> \n ${e}`);
         console.log(e);
         //
     }

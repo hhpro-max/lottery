@@ -7,6 +7,8 @@ import 'package:lottery/common/widgets/loading_opacity_screen.dart';
 import 'package:lottery/features/auth/services/auth_services.dart';
 import 'package:lottery/helpers/config.dart';
 
+import '../../../common/widgets/custom_common_appbar.dart';
+
 class SigninScreen extends StatelessWidget {
   SigninScreen({super.key});
   TextEditingController userNameController = TextEditingController();
@@ -15,9 +17,7 @@ class SigninScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sign In"),
-      ),
+      appBar: customCommonAppBar(titleText: "Sign In"),
       body: Stack(children: [
         Container(
           padding: const EdgeInsets.all(8.0),
@@ -56,7 +56,9 @@ class SigninScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  customCommonTextButton(title: "or Sign Up", onPressed: () {}),
+                  customCommonTextButton(title: "or Sign Up", onPressed: () {
+                    Get.offNamed('/signup');
+                  }),
                   customCommonElevatedButton(
                     title: "Sign In",
                     onPressed: () {
@@ -73,7 +75,7 @@ class SigninScreen extends StatelessWidget {
             ]),
           ),
         ),
-        Obx(() => Get.find<Config>().waitingForLoginRes.value == false
+        Obx(() => Get.find<Config>().waitingForSigninRes.value == false
             ? Container()
             : const LoadingOpacityScreen())
       ]),

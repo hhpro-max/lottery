@@ -9,9 +9,11 @@ class Config{
   //route names
   String homePageRouteName = '/';
   String signinPageRouteName = '/signin';
+  String singupPageRouteName= '/signup';
+  String profilePageRouteName = '/profile';
   //server connection configs
   String serverUrl = "http://localhost:3000";
-  var waitingForLoginRes = false.obs;
-
+  var waitingForSigninRes = false.obs;
+  var waitingForSignupRes = false.obs;
   Config({required this.mainDirectory});
 }
