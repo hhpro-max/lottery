@@ -8,7 +8,6 @@ import 'package:lottery/helpers/config.dart';
 import 'package:lottery/helpers/error_handler.dart';
 import 'package:lottery/models/user.dart';
 import 'package:lottery/providers/user_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices {
   static void signIn(
@@ -30,13 +29,11 @@ class AuthServices {
           ],
           response: response,
           onSuccess: () async {
-            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await Get.find<UserProvider>().setToken(jsonDecode(response.body)['token']);
             Get.find<UserProvider>().setUser(response.body);
-            await prefs.setString(
-                "x-auth-token", jsonDecode(response.body)['token']);
             //logging
             Get.find<AppLogger>().logger.i(
-                "user signed in successfuly -> ${Get.find<UserProvider>().user.toJson()} // with token ${prefs.getString('x-auth-token')}");
+                "user signed in successfuly -> ${Get.find<UserProvider>().user.toJson()} // with token ${Get.find<UserProvider>().token}");
           },
           context: context,
           
@@ -77,13 +74,11 @@ class AuthServices {
             }, child: const Text("OK"))
           ],
           response: response, onSuccess: () async{
-            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await Get.find<UserProvider>().setToken(jsonDecode(response.body)['token']);
             Get.find<UserProvider>().setUser(response.body);
-            await prefs.setString(
-                "x-auth-token", jsonDecode(response.body)['token']);
             //logging
             Get.find<AppLogger>().logger.i(
-                "user signed up successfuly -> ${Get.find<UserProvider>().user.toJson()} // with token ${prefs.getString('x-auth-token')}");
+                "user signed up successfuly -> ${Get.find<UserProvider>().user.toJson()} // with token ${Get.find<UserProvider>().token}");
           }, context: context);
       Get.find<Config>().waitingForSignupRes.value = false;
     } catch (e) {
