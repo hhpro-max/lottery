@@ -6,6 +6,7 @@ const dotEnv = require('dotenv');
 //import from local files
 const logger = require('./logs/logger');
 const authRoute = require('./routes/auth');
+const lotteryRoute = require('./routes/lottery');
 // loading configs
 dotEnv.config(
     {
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(logger);
 //routes
 app.use('/auth',authRoute);
+app.use('/lottery',lotteryRoute);
 //starting server
 setTimeout(
     ()=>{

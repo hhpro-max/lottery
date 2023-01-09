@@ -8,6 +8,7 @@ import 'package:lottery/features/profile/screen/profile_screen.dart';
 import 'package:lottery/helpers/applogger/app_logger.dart';
 import 'package:lottery/helpers/config.dart';
 import 'package:lottery/helpers/error_handler.dart';
+import 'package:lottery/providers/app_provider.dart';
 import 'package:lottery/providers/user_provider.dart';
 import 'package:path/path.dart' as path;
 void main() {
@@ -16,7 +17,9 @@ void main() {
   AppLogger appLogger = Get.put<AppLogger>(AppLogger());
   ErrHandler errHandler = Get.put<ErrHandler>(ErrHandler());
   UserProvider userProvider = Get.put<UserProvider>(UserProvider());
+  AppProvider appProvider = Get.put<AppProvider>(AppProvider());
   appLogger.logger.i("!APP IS RUNNING!");
+  
   //config.initDirectory();
   runApp(GetMaterialApp(
     initialRoute: '/',

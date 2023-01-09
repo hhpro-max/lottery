@@ -34,6 +34,8 @@ authRoute.post('/signin', async (req, res) => {
         res.status(500).json({ err: e.message });
         //logging
         req.log.fatal(`ERR IN SINGIN ROUTE -> \n ${e}`);
+        console.log(e.message);
+
         console.log(e);
         //
     }
@@ -63,6 +65,8 @@ authRoute.post('/signup', async (req, res) => {
         res.status(500).json({ err: e.message });
         //logging
         req.log.fatal(`ERR IN SIGNUP ROUTE-> \n ${e}`);
+        console.log(e.message);
+
         console.log(e);
         //
     }

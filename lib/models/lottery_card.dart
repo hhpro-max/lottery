@@ -5,18 +5,22 @@ class LotteryCard {
   String id;
   String lotteryName;
   Map images;
-  String description;
+  Map descriptions;
+  Map rules;
   int numberCount;
   double price;
   double jackPot;
+  int isMain;
   LotteryCard({
     required this.id,
     required this.lotteryName,
     required this.images,
-    required this.description,
+    required this.descriptions,
+    required this.rules,
     required this.numberCount,
     required this.price,
     required this.jackPot,
+    required this.isMain
   });
   
 
@@ -25,10 +29,12 @@ class LotteryCard {
       '_id':id,
       'lotteryName': lotteryName,
       'images': images,
-      'description': description,
+      'descriptions': descriptions,
+      'rules':rules,
       'numberCount': numberCount,
       'price': price,
       'jackPot': jackPot,
+      'isMain':isMain
     };
   }
 
@@ -37,10 +43,12 @@ class LotteryCard {
       id: map['_id'] as String,
       lotteryName: map['lotteryName'] as String,
       images: Map.from(map['images'] as Map),
-      description: map['description'] as String,
+      descriptions: map['descriptions'] as Map,
+      rules: map['rules'] as Map,
       numberCount: map['numberCount'] as int,
-      price: map['price'] as double,
-      jackPot: map['jackPot'] as double,
+      price: map['price'] + .0 as double,
+      jackPot: double.parse(map['jackPot'].toString()),
+      isMain: map['isMain'] as int
     );
   }
 

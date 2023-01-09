@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const lotteryDescriptionsSchema = require('./lotteryDescriptions');
+const lotteryImageSchema = require('./lotteryImages');
 
 const lotteryCardSchema = new mongoose.Schema({
     lotteryName:{
@@ -6,12 +8,10 @@ const lotteryCardSchema = new mongoose.Schema({
         trim:true,
         required:true
     },
-    images:{
-        type:Map,
-        require:true
-    },
-    description:{
-        type:String,
+    images:lotteryImageSchema,
+    descriptions:lotteryDescriptionsSchema,
+    rules:{
+        type:Object,
         trim:true,
         required:true
     },
@@ -26,6 +26,10 @@ const lotteryCardSchema = new mongoose.Schema({
     jackPot:{
         type:Number,
         required:true,
+    },
+    isMain:{
+        type:Number,
+        required:true
     }
 });
 
