@@ -3,57 +3,43 @@ import 'package:get/get.dart';
 
 import 'package:lottery/features/home/widgets/custom_switch.dart';
 
-Drawer customDrawer() {
-  return Drawer(
-    child: Container(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Row(
-            children: [const Text("dark theme"), customSwitch],
-          )
-        ],
-      ),
-    ),
-    //todo
-  );
+
+
+class CustomDrawer extends StatefulWidget {
+   CustomDrawer({super.key});
+
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
 }
 
-// class CustomDrawer extends StatefulWidget {
-//   const CustomDrawer({super.key});
-
-//   @override
-//   State<CustomDrawer> createState() => _CustomDrawerState();
-// }
-
-// class _CustomDrawerState extends State<CustomDrawer> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Drawer(
-//       child: Container(
-//         padding: const EdgeInsets.all(8.0),
-//         child: Column(
-//           children: [
-//             Row(
-//               children: [
-//                 const Text("dark theme"),
-//                 Switch(
-//                   value: Get.isDarkMode,
-//                   onChanged: (val) {
-//                     Get.isDarkMode
-//                         ? Get.changeThemeMode(ThemeMode.light)
-//                         : Get.changeThemeMode(ThemeMode.dark);
-//                         setState(() {
+class _CustomDrawerState extends State<CustomDrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Text("dark theme"),
+                Switch(
+                  value: Get.isDarkMode,
+                  onChanged: (val) {
+                    Get.isDarkMode
+                        ? Get.changeThemeMode(ThemeMode.light)
+                        : Get.changeThemeMode(ThemeMode.dark);
+                        setState(() {
                           
-//                         });
-//                   },
-//                 )
-//               ],
-//             )
-//           ],
-//         ),
-//       ),
-//       //todo
-//     );
-//   }
-// }
+                        });
+                  },
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+      //todo
+    );
+  }
+}
