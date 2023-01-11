@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottery/helpers/config.dart';
 import 'package:lottery/providers/app_provider.dart';
 
 import '../../../common/widgets/custom_common_elevatedbutton.dart';
@@ -14,6 +15,7 @@ class MainLotteryCardWidget extends StatefulWidget {
 class _MainLotteryCardWidgetState extends State<MainLotteryCardWidget> {
   @override
   Widget build(BuildContext context) {
+    
     return Get.find<AppProvider>().lotteries.value != null
         ? Stack(
           alignment: Alignment.center,
@@ -28,24 +30,29 @@ class _MainLotteryCardWidgetState extends State<MainLotteryCardWidget> {
                       borderRadius: BorderRadius.circular(20)
                       ),),
             ),
-            Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Obx(() => Image(
-                        image: NetworkImage(Get.find<AppProvider>()
-                            .getMainLotteryCard()!
-                            .images['main']),
-                      )),
-                ),
-                Positioned(
-                    bottom: 20,
-                    left: 10,
-                    child: customCommonElevatedButton(
-                        title:
-                            'play for ${Get.find<AppProvider>().getMainLotteryCard()!.price}\$',
-                        onPressed: () {}))
-              ],
+            GestureDetector(
+              onTap: (){
+                Get.toNamed(Get.find<Config>().lotterycardPageRouteName,arguments: Get.find<AppProvider>().getMainLotteryCard()!);
+              },
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Obx(() => Image(
+                          image: NetworkImage(Get.find<AppProvider>()
+                              .getMainLotteryCard()!
+                              .images['main']),
+                        )),
+                  ),
+                  Positioned(
+                      bottom: 20,
+                      left: 10,
+                      child: customCommonElevatedButton(
+                          title:
+                              'play for ${Get.find<AppProvider>().getMainLotteryCard()!.price}\$',
+                          onPressed: () {Get.toNamed(Get.find<Config>().lotterycardPageRouteName,arguments: Get.find<AppProvider>().getMainLotteryCard()!);}))
+                ],
+              ),
             ),
           ])
         : const Center(child: CircularProgressIndicator());

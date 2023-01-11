@@ -35,7 +35,11 @@ const lotteryDescriptionsSchema = new mongoose.Schema({
         trim:true,
         required:true
     },
-    
+    finishTime:{
+        type:String,
+        trim:true,
+        required:true
+    }
 
 });
 

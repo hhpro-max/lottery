@@ -11,6 +11,7 @@ class Config{
   String signinPageRouteName = '/signin';
   String singupPageRouteName= '/signup';
   String profilePageRouteName = '/profile';
+  String lotterycardPageRouteName = '/lottery';
   //server connection configs
   String serverUrl = "http://localhost:3000";
   var waitingForSigninRes = false.obs;

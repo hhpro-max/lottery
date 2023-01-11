@@ -19,7 +19,7 @@ textStyle: MaterialStateTextStyle.resolveWith((states) => TextStyle(color: Custo
       )
   ),
   scaffoldBackgroundColor: CustomColors.ltBackGround2,
-  textTheme: customTextTheme(),
+  textTheme: customLtTextTheme(),
   dividerColor: CustomColors.ltCommonWidget1,
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
@@ -45,7 +45,7 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
       )
   ),
   scaffoldBackgroundColor: CustomColors.dtBackGround2,
-  textTheme: customTextTheme(),
+  textTheme: customDtTextTheme(),
   dividerColor: CustomColors.dtCommonWidget1,
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
