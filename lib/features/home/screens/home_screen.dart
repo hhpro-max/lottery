@@ -22,11 +22,17 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       
     });
+  
+  }
+  @override
+  void initState() {
+    super.initState();
+    fetchLotteries();
   }
 
   @override
   Widget build(BuildContext context) {
-    fetchLotteries();
+    
     return Scaffold(
       drawer: CustomDrawer(),
       appBar: customAppBar(),

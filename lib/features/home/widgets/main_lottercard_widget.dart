@@ -6,7 +6,7 @@ import 'package:lottery/providers/app_provider.dart';
 import '../../../common/widgets/custom_common_elevatedbutton.dart';
 
 class MainLotteryCardWidget extends StatefulWidget {
-  MainLotteryCardWidget({super.key});
+  const MainLotteryCardWidget({super.key});
 
   @override
   State<MainLotteryCardWidget> createState() => _MainLotteryCardWidgetState();
@@ -16,7 +16,7 @@ class _MainLotteryCardWidgetState extends State<MainLotteryCardWidget> {
   @override
   Widget build(BuildContext context) {
     
-    return Get.find<AppProvider>().lotteries.value != null
+    return Get.find<AppProvider>().lotteries.value != null && Get.find<AppProvider>().getMainLotteryCard()!=null
         ? Stack(
           alignment: Alignment.center,
           children: [

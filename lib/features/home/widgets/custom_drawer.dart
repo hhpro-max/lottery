@@ -26,11 +26,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 Switch(
                   value: Get.isDarkMode,
                   onChanged: (val) {
-                    Get.isDarkMode
+                        setState(() {
+                          Get.isDarkMode
                         ? Get.changeThemeMode(ThemeMode.light)
                         : Get.changeThemeMode(ThemeMode.dark);
-                        setState(() {
-                          
                         });
                   },
                 )

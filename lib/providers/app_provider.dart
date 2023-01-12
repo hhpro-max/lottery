@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottery/models/lottery_card.dart';
 import 'package:get/get.dart';
+import 'package:lottery/models/lottery_slip.dart';
 class AppProvider{
   var lotteries = (null as List<LotteryCard>?).obs;
+  List<LotterySlip> choosenNumbersList = []; 
   Color findLotteryColor(LotteryCard lotteryCard) {
     switch (lotteryCard.images['mainColor']) {
       case 'green':

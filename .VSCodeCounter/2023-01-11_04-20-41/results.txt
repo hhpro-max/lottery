@@ -1,0 +1,45 @@
+Date : 2023-01-11 04:20:41
+Directory : /media/hhpro/DL/Projects/LOT/lottery/server
+Total : 13 files,  3329 codes, 24 comments, 29 blanks, all 3382 lines
+
+Languages
++-----------------------+------------+------------+------------+------------+------------+
+| language              | files      | code       | comment    | blank      | total      |
++-----------------------+------------+------------+------------+------------+------------+
+| JSON                  |          2 |      3,071 |          0 |          2 |      3,073 |
+| JavaScript            |         10 |        256 |         24 |         27 |        307 |
+| Environment Variables |          1 |          2 |          0 |          0 |          2 |
++-----------------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                        | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                           |         13 |      3,329 |         24 |         29 |      3,382 |
+| . (Files)                                                                   |          3 |      3,106 |          7 |          3 |      3,116 |
+| configs                                                                     |          1 |          2 |          0 |          0 |          2 |
+| logs                                                                        |          1 |         16 |          0 |          2 |         18 |
+| middlewares                                                                 |          1 |          0 |          0 |          1 |          1 |
+| models                                                                      |          4 |        126 |          0 |         11 |        137 |
+| routes                                                                      |          3 |         79 |         17 |         12 |        108 |
++-----------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------+-----------------------+------------+------------+------------+------------+
+| filename                                                                    | language              | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------+-----------------------+------------+------------+------------+------------+
+| /media/hhpro/DL/Projects/LOT/lottery/server/app.js                          | JavaScript            |         35 |          7 |          1 |         43 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/configs/config.env              | Environment Variables |          2 |          0 |          0 |          2 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/logs/logger.js                  | JavaScript            |         16 |          0 |          2 |         18 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/middlewares/validSignupCheck.js | JavaScript            |          0 |          0 |          1 |          1 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/models/lotteryDescriptions.js   | JavaScript            |         43 |          0 |          3 |         46 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/models/lotteryImages.js         | JavaScript            |         24 |          0 |          2 |         26 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/models/lotterycard.js           | JavaScript            |         35 |          0 |          2 |         37 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/models/user.js                  | JavaScript            |         24 |          0 |          4 |         28 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/package-lock.json               | JSON                  |      3,046 |          0 |          1 |      3,047 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/package.json                    | JSON                  |         25 |          0 |          1 |         26 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/routes/auth.js                  | JavaScript            |         56 |         13 |          6 |         75 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/routes/connection.js            | JavaScript            |          7 |          0 |          2 |          9 |
+| /media/hhpro/DL/Projects/LOT/lottery/server/routes/lottery.js               | JavaScript            |         16 |          4 |          4 |         24 |
+| Total                                                                       |                       |      3,329 |         24 |         29 |      3,382 |
++-----------------------------------------------------------------------------+-----------------------+------------+------------+------------+------------+

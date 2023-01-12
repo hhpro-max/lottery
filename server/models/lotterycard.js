@@ -30,6 +30,10 @@ const lotteryCardSchema = new mongoose.Schema({
     isMain:{
         type:Number,
         required:true
+    },
+    numberRange:{
+        type:Number,
+        required:true
     }
 });
 

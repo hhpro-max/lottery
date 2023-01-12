@@ -11,6 +11,7 @@ class LotteryCard {
   double price;
   double jackPot;
   int isMain;
+  int numberRange;
   LotteryCard({
     required this.id,
     required this.lotteryName,
@@ -20,21 +21,22 @@ class LotteryCard {
     required this.numberCount,
     required this.price,
     required this.jackPot,
-    required this.isMain
+    required this.isMain,
+    required this.numberRange,
   });
-  
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      '_id':id,
+      'id': id,
       'lotteryName': lotteryName,
       'images': images,
       'descriptions': descriptions,
-      'rules':rules,
+      'rules': rules,
       'numberCount': numberCount,
       'price': price,
       'jackPot': jackPot,
-      'isMain':isMain
+      'isMain': isMain,
+      'numberRange': numberRange,
     };
   }
 
@@ -42,17 +44,19 @@ class LotteryCard {
     return LotteryCard(
       id: map['_id'] as String,
       lotteryName: map['lotteryName'] as String,
-      images: Map.from(map['images'] as Map),
-      descriptions: map['descriptions'] as Map,
-      rules: map['rules'] as Map,
+      images: Map.from((map['images'] as Map)),
+      descriptions: Map.from((map['descriptions'] as Map)),
+      rules: Map.from((map['rules'] as Map)),
       numberCount: map['numberCount'] as int,
-      price: map['price'] + .0 as double,
-      jackPot: double.parse(map['jackPot'].toString()),
-      isMain: map['isMain'] as int
+      price: map['price']+.0 as double,
+      jackPot: map['jackPot']+.0 as double,
+      isMain: map['isMain'] as int,
+      numberRange: map['numberRange'] as int,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory LotteryCard.fromJson(String source) => LotteryCard.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory LotteryCard.fromJson(String source) =>
+      LotteryCard.fromMap(json.decode(source) as Map<String, dynamic>);
 }
