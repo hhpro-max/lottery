@@ -8,14 +8,32 @@ import 'package:lottery/models/lottery_card.dart';
 import 'package:lottery/models/lottery_slip.dart';
 import 'package:lottery/providers/app_provider.dart';
 import 'package:lottery/providers/user_provider.dart';
+
 showChooseNumberPage(
     {required BuildContext context,
     required int numberCount,
     required List<Map> numbers,
     required Color choosenColor,
-    required String lotteryId
-    }) {
-  List<int> choosenNums = [];
+    required String lotteryId,
+    required List<int> choosenNumsList}) {
+      //check for edit 
+  List<int> choosenNums = choosenNumsList;
+  Get.find<AppProvider>().choosenNumbersList.forEach((element) {
+    if(element.lotteryId==lotteryId&&choosenNums.isNotEmpty){
+      element.numbers.remove(choosenNums);
+    }
+  });
+  if(choosenNums.isNotEmpty){
+    for (var element in numbers) {
+    inLoop:
+    for (int check in choosenNums){
+    if(element['number']==check){
+      element['isChoosen'] = true;
+      break inLoop;
+    }
+    }
+  }
+  }
   return showDialog(
       barrierDismissible: false,
       context: context,
@@ -35,7 +53,7 @@ showChooseNumberPage(
                   onPressed: () {
                     if (choosenNums.length < numberCount) {
                       var random = Random();
-                      int rNumber = random.nextInt(51);
+                      int rNumber = random.nextInt(numbers.length) + 1;
                       choosenNums.addIf(
                           !choosenNums.contains(rNumber), rNumber);
                       choosenNums.sort();
@@ -58,17 +76,35 @@ showChooseNumberPage(
                       for (var element in numbers) {
                         element['isChoosen'] = false;
                       }
-                      Get.find<AppProvider>().choosenNumbersList.isEmpty?
-                      Get.find<AppProvider>().choosenNumbersList.add(LotterySlip(lotteryId: lotteryId, userId: Get.find<UserProvider>().user.id, numbers: [choosenNums])):
-                      Get.find<AppProvider>().choosenNumbersList.forEach((element) {if(element.lotteryId==lotteryId){
-                        element.numbers.add(choosenNums);
-                        return;
-                      }else if(Get.find<AppProvider>().choosenNumbersList.indexOf(element)==Get.find<AppProvider>().choosenNumbersList.length-1){
-                      Get.find<AppProvider>().choosenNumbersList.add(LotterySlip(lotteryId: lotteryId, userId: Get.find<UserProvider>().user.id, numbers: [choosenNums]));
-                      }
-                      });
-                      
-                      
+                      Get.find<AppProvider>().choosenNumbersList.isEmpty
+                          ? Get.find<AppProvider>().choosenNumbersList.add(
+                              LotterySlip(
+                                  lotteryId: lotteryId,
+                                  userId: Get.find<UserProvider>().user.id,
+                                  numbers: [choosenNums]))
+                          : Get.find<AppProvider>()
+                              .choosenNumbersList
+                              .forEach((element) {
+                              if (element.lotteryId == lotteryId) {
+                                element.numbers.add(choosenNums);
+                                return;
+                              } else if (Get.find<AppProvider>()
+                                      .choosenNumbersList
+                                      .indexOf(element) ==
+                                  Get.find<AppProvider>()
+                                          .choosenNumbersList
+                                          .length -
+                                      1) {
+                                Get.find<AppProvider>().choosenNumbersList.add(
+                                    LotterySlip(
+                                        lotteryId: lotteryId,
+                                        userId:
+                                            Get.find<UserProvider>().user.id,
+                                        numbers: [choosenNums]));
+                              }
+                            });
+                            
+                            
                       Navigator.pop(context);
                     } else {
                       showMyDialog(

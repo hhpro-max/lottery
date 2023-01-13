@@ -6,18 +6,18 @@ import 'package:get/get.dart';
 
 import 'package:lottery/models/lottery_card.dart';
 
-class LotteryInfo extends StatefulWidget {
+class LotteryTopInfo extends StatefulWidget {
   final LotteryCard lotteryCard;
-  const LotteryInfo({
+  const LotteryTopInfo({
     Key? key,
     required this.lotteryCard,
   }) : super(key: key);
 
   @override
-  State<LotteryInfo> createState() => _LotteryInfoState();
+  State<LotteryTopInfo> createState() => _LotteryTopInfoState();
 }
 
-class _LotteryInfoState extends State<LotteryInfo> {
+class _LotteryTopInfoState extends State<LotteryTopInfo> {
   Timer? countDownTimer;
   Duration? duration;
 
@@ -65,24 +65,35 @@ class _LotteryInfoState extends State<LotteryInfo> {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Text(widget.lotteryCard.descriptions['main'],
           style: Theme.of(context).textTheme.headlineLarge),
-        
       Text(
         widget.lotteryCard.descriptions['info'],
         style: Theme.of(context).textTheme.headlineSmall,
       ),
-      const SizedBox(height: 20,), 
+      const SizedBox(
+        height: 20,
+      ),
+      ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image(image: NetworkImage(widget.lotteryCard.images['inPage'])),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
       Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-            color: Get.isDarkMode?Colors.black:Colors.white, borderRadius: BorderRadius.circular(12)),
+            color: Get.isDarkMode ? Colors.black : Colors.white,
+            borderRadius: BorderRadius.circular(12)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'game close in : ', 
+              'game close in : ',
               style: Theme.of(context).textTheme.bodyText2,
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(
+              height: 5,
+            ),
             Center(
               child: Text(
                 "$days days and $hours:$minutes:$seconds",

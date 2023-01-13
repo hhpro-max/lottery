@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:lottery/common/widgets/custom_common_appbar.dart';
-import 'package:lottery/features/lottery/widgets/lottery_info.dart';
+import 'package:lottery/features/lottery/widgets/lottery_top_info.dart';
 import 'package:lottery/features/lottery/widgets/lottery_play.dart';
 import 'package:lottery/models/lottery_card.dart';
 import 'package:lottery/providers/app_provider.dart';
@@ -46,7 +46,8 @@ class _LotteryCardScreenState extends State<LotteryCardScreen> {
             padding: const EdgeInsets.all(12),
             child: Column(
               children: [
-                LotteryInfo(lotteryCard: widget.lotteryCard),
+                
+                LotteryTopInfo(lotteryCard: widget.lotteryCard),
                 const SizedBox(height: 20,),
                 LotteryPlay(lotteryCard: widget.lotteryCard)
               ],

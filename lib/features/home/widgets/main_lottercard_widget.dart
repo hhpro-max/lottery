@@ -39,6 +39,16 @@ class _MainLotteryCardWidgetState extends State<MainLotteryCardWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Obx(() => Image(
+                      //todo makes loadingbuilder and error builder common to use for every class (clean code)
+                          // loadingBuilder: (context, child, loadingProgress) {
+                          //   return const CircularProgressIndicator();
+                          // },
+                          // //! it is not working
+                          // errorBuilder: ((context, error, stackTrace) {
+                          //   error.printError();
+                          //   stackTrace;
+                          //   return const Icon(Icons.error);
+                          // }),
                           image: NetworkImage(Get.find<AppProvider>()
                               .getMainLotteryCard()!
                               .images['main']),
