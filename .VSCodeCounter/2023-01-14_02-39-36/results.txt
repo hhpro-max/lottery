@@ -1,0 +1,36 @@
+Date : 2023-01-14 02:39:36
+Directory : /media/hhpro/DL/Projects/LOT/lottery/windows
+Total : 10 files,  404 codes, 80 comments, 131 blanks, all 615 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         10 |        404 |         80 |        131 |        615 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                   |         10 |        404 |         80 |        131 |        615 |
+| flutter                                                                             |          2 |          8 |          9 |         11 |         28 |
+| runner                                                                              |          8 |        396 |         71 |        120 |        587 |
++-------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                            | language | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| /media/hhpro/DL/Projects/LOT/lottery/windows/flutter/generated_plugin_registrant.cc | C++      |          3 |          4 |          5 |         12 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/flutter/generated_plugin_registrant.h  | C++      |          5 |          5 |          6 |         16 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/flutter_window.cpp              | C++      |         45 |          4 |         13 |         62 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/flutter_window.h                | C++      |         20 |          5 |          9 |         34 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/main.cpp                        | C++      |         30 |          4 |         10 |         44 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/resource.h                      | C++      |          9 |          6 |          2 |         17 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/utils.cpp                       | C++      |         53 |          2 |         10 |         65 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/utils.h                         | C++      |          8 |          6 |          6 |         20 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/win32_window.cpp                | C++      |        183 |         15 |         48 |        246 |
+| /media/hhpro/DL/Projects/LOT/lottery/windows/runner/win32_window.h                  | C++      |         48 |         29 |         22 |         99 |
+| Total                                                                               |          |        404 |         80 |        131 |        615 |
++-------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

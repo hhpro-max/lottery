@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:lottery/common/widgets/custom_common_appbar.dart';
+import 'package:lottery/features/lottery/widgets/lottery_bot_info.dart';
 import 'package:lottery/features/lottery/widgets/lottery_top_info.dart';
 import 'package:lottery/features/lottery/widgets/lottery_play.dart';
 import 'package:lottery/models/lottery_card.dart';
@@ -49,7 +50,9 @@ class _LotteryCardScreenState extends State<LotteryCardScreen> {
                 
                 LotteryTopInfo(lotteryCard: widget.lotteryCard),
                 const SizedBox(height: 20,),
-                LotteryPlay(lotteryCard: widget.lotteryCard)
+                LotteryPlay(lotteryCard: widget.lotteryCard),
+                const SizedBox(height: 20,),
+                LotteryBotInfo(lotteryCard: widget.lotteryCard)
               ],
             ),
           ),

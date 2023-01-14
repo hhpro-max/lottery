@@ -14,15 +14,15 @@ showChooseNumberPage(
     required int numberCount,
     required List<Map> numbers,
     required Color choosenColor,
-    required String lotteryId,
+    required LotterySlip lotterySlip,
     required List<int> choosenNumsList}) {
       //check for edit 
   List<int> choosenNums = choosenNumsList;
-  Get.find<AppProvider>().choosenNumbersList.forEach((element) {
-    if(element.lotteryId==lotteryId&&choosenNums.isNotEmpty){
-      element.numbers.remove(choosenNums);
+  
+    if(choosenNums.isNotEmpty){
+      lotterySlip.numbers.remove(choosenNums);
     }
-  });
+  
   if(choosenNums.isNotEmpty){
     for (var element in numbers) {
     inLoop:
@@ -76,34 +76,8 @@ showChooseNumberPage(
                       for (var element in numbers) {
                         element['isChoosen'] = false;
                       }
-                      Get.find<AppProvider>().choosenNumbersList.isEmpty
-                          ? Get.find<AppProvider>().choosenNumbersList.add(
-                              LotterySlip(
-                                  lotteryId: lotteryId,
-                                  userId: Get.find<UserProvider>().user.id,
-                                  numbers: [choosenNums]))
-                          : Get.find<AppProvider>()
-                              .choosenNumbersList
-                              .forEach((element) {
-                              if (element.lotteryId == lotteryId) {
-                                element.numbers.add(choosenNums);
-                                return;
-                              } else if (Get.find<AppProvider>()
-                                      .choosenNumbersList
-                                      .indexOf(element) ==
-                                  Get.find<AppProvider>()
-                                          .choosenNumbersList
-                                          .length -
-                                      1) {
-                                Get.find<AppProvider>().choosenNumbersList.add(
-                                    LotterySlip(
-                                        lotteryId: lotteryId,
-                                        userId:
-                                            Get.find<UserProvider>().user.id,
-                                        numbers: [choosenNums]));
-                              }
-                            });
-                            
+                      
+                      lotterySlip.numbers.add(choosenNums);      
                             
                       Navigator.pop(context);
                     } else {

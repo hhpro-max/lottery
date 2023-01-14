@@ -11,6 +11,7 @@ import 'package:lottery/models/lottery_slip.dart';
 import 'package:lottery/providers/app_provider.dart';
 import 'package:path/path.dart';
 
+import '../../../providers/user_provider.dart';
 import 'choose_number_page.dart';
 
 class LotteryPlay extends StatefulWidget {
@@ -56,7 +57,11 @@ class _LotteryPlayState extends State<LotteryPlay> {
           duplicate++;
           if (duplicate >= 2) {
             slip.numbers.remove(element2);
-            showMyDialog(context: context, title: '', description: "!duplicated numbers!", barrierDismissible: true);
+            showMyDialog(
+                context: context,
+                title: '',
+                description: "!duplicated numbers!",
+                barrierDismissible: true);
             break loop;
           }
         }
@@ -125,6 +130,8 @@ class _LotteryPlayState extends State<LotteryPlay> {
                                     deletDuplicateItems(context: context);
                                     rNumbers.sort();
                                     slip.numbers.add(rNumbers);
+                                    
+
                                     itemCount++;
                                   }
                                 });
@@ -146,7 +153,7 @@ class _LotteryPlayState extends State<LotteryPlay> {
                                             slip.numbers.length > index
                                                 ? slip.numbers[index]
                                                 : [],
-                                        lotteryId: widget.lotteryCard.id,
+                                        lotterySlip: slip,
                                         context: context,
                                         numberCount: numberCount,
                                         choosenColor: Get.find<AppProvider>()
@@ -154,16 +161,7 @@ class _LotteryPlayState extends State<LotteryPlay> {
                                                 widget.lotteryCard),
                                         numbers: numbers)
                                     .then((_) => setState(() {
-                                          for (LotterySlip element
-                                              in Get.find<AppProvider>()
-                                                  .choosenNumbersList) {
-                                            if (element.lotteryId ==
-                                                widget.lotteryCard.id) {
-                                              slip = element;
-                                              deletDuplicateItems(context:context);
-                                              
-                                            }
-                                          }
+                                          deletDuplicateItems(context: context);
                                           itemCount = slip.numbers.length + 1;
                                         }));
                               }),
