@@ -75,7 +75,7 @@ class LotteryWinRules extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(12)),
-        color: Colors.red[900]
+        color: Colors.grey[600]
       ),
       child: ListView.builder(
           shrinkWrap: true,

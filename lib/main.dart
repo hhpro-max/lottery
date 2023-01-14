@@ -7,6 +7,7 @@ import 'package:lottery/features/auth/screens/sing_in_screen.dart';
 import 'package:lottery/features/home/screens/home_screen.dart';
 import 'package:lottery/common/theme/custom_theme.dart';
 import 'package:lottery/features/lottery/screens/lottery_card_screen.dart';
+import 'package:lottery/features/lottery/screens/more_info_screen.dart';
 import 'package:lottery/features/profile/screen/profile_screen.dart';
 import 'package:lottery/helpers/applogger/app_logger.dart';
 import 'package:lottery/helpers/config.dart';
@@ -45,7 +46,9 @@ void main() async {
           name: config.lotterycardPageRouteName,
           page: () => LotteryCardScreen(
                 lotteryCard: Get.arguments,
-              )) //? is this works or not?
+              )),
+      GetPage(name: config.lotteryMoreInfoPageRouteName, page:()=> LotteryMoreInfoScreen(lotteryCard: Get.arguments))         
+
     ],
     theme: lightTheme,
     darkTheme: darkTheme,
