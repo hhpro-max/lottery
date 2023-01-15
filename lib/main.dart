@@ -7,6 +7,7 @@ import 'package:lottery/features/auth/screens/sing_in_screen.dart';
 import 'package:lottery/features/home/screens/home_screen.dart';
 import 'package:lottery/common/theme/custom_theme.dart';
 import 'package:lottery/features/lottery/screens/lottery_card_screen.dart';
+import 'package:lottery/features/lottery/screens/lottery_payment_screen.dart';
 import 'package:lottery/features/lottery/screens/more_info_screen.dart';
 import 'package:lottery/features/profile/screen/profile_screen.dart';
 import 'package:lottery/helpers/applogger/app_logger.dart';
@@ -47,8 +48,8 @@ void main() async {
           page: () => LotteryCardScreen(
                 lotteryCard: Get.arguments,
               )),
-      GetPage(name: config.lotteryMoreInfoPageRouteName, page:()=> LotteryMoreInfoScreen(lotteryCard: Get.arguments))         
-
+      GetPage(name: config.lotteryMoreInfoPageRouteName, page:()=> LotteryMoreInfoScreen(lotteryCard: Get.arguments)),         
+      GetPage(name: config.lotteryPayMentPageRouteName, page: ()=> LotteryPaymentScreen(lotteryCard: Get.arguments[0], lotterySlip: Get.arguments[1]))
     ],
     theme: lightTheme,
     darkTheme: darkTheme,

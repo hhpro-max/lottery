@@ -6,7 +6,7 @@ import 'package:lottery/features/home/widgets/custom_switch.dart';
 
 
 class CustomDrawer extends StatefulWidget {
-   CustomDrawer({super.key});
+   const CustomDrawer({super.key});
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();

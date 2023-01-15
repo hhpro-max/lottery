@@ -195,7 +195,10 @@ class _LotteryPlayState extends State<LotteryPlay> {
                               }),
                         ),
                         index == itemCount - 1
-                            ? IconButton(
+                            ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconButton(
                                 onPressed: () {
                                   setState(() {
                                     itemCount++;
@@ -209,7 +212,19 @@ class _LotteryPlayState extends State<LotteryPlay> {
                                 ),
                                 style: IconButton.styleFrom(
                                     shape: const CircleBorder()),
-                              )
+                              ),
+                              Row(children: [Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text('total : ${slip.numbers.length*widget.lotteryCard.price} \$',style: Theme.of(context).textTheme.bodyText1,),
+                              ),customCommonElevatedButton(title: "lets play",onPressed: (){
+                                if(slip.numbers.isNotEmpty){
+                                  Get.toNamed('/payment',arguments: [widget.lotteryCard,slip]);
+                                }else{
+                                  showMyDialog(context: context, title: '', description: 'pls choose at least one line of numbers', barrierDismissible: true);
+                                }
+                              })],)
+                              ],
+                            )
                             : Container()
                       ],
                     ),

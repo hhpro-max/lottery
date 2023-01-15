@@ -13,6 +13,7 @@ class Config{
   String profilePageRouteName = '/profile';
   String lotterycardPageRouteName = '/lottery';
   String lotteryMoreInfoPageRouteName = '/moreinfo';
+  String lotteryPayMentPageRouteName = '/payment';
   //server connection configs
   String serverUrl = "http://localhost:3000";
   var waitingForSigninRes = false.obs;
