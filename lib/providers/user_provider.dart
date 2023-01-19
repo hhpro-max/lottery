@@ -16,11 +16,17 @@ class UserProvider {
   }
   void reSetUser() {
     _user = User(id: "",userName: "", email: "", password: "", cart: []);
+    
   }
   String get token => _token;
   setToken(String token)async{
       var prefs = await getPrefereces();
       await prefs.setString("x-auth-token", token);
+      if(headers.keys.contains('x-auth-token')){
+        headers['x-auth-token'] = token;
+      }else{
+        headers.putIfAbsent('x-auth-token', () => token);
+      }
     _token = token;
   }
 }

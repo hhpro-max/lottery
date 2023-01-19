@@ -70,6 +70,37 @@ authRoute.post('/signup', async (req, res) => {
         console.log(e);
         //
     }
+});
+
+authRoute.post('/logout',(req,res)=>{
+    try{
+        const token = req.header('x-auth-token');
+        if(!token){
+           return res.status(400).json('you were logged out befor');
+        }
+        const verified = jwt.verify(token,'passwordKey');
+        if(!verified){
+            return res.status(400).json('auth failed');
+        }
+        
+        const userId = verified.id 
+        //logging
+        req.log.info(`USER ${userId} LOGGEDOUT !}`);
+        //
+        //todo terminate token here
+        //jwt.destroy(token); [this is not working]
+        verified.id = '';
+        res.json({msg:'logged out successfully'});
+        
+
+    }catch(e){
+        res.status(500).json({ err: e.message });
+        //logging
+        req.log.fatal(`ERR IN LOGOUT ROUTE !}`);
+        console.log(e.message);
+        console.log(e);
+        //
+    }
 })
 
 module.exports = authRoute;

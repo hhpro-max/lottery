@@ -14,7 +14,7 @@ class AuthServices {
       {required String userName,
       required String password,
       required BuildContext context}) async {
-    Get.find<Config>().waitingForSigninRes.value = true;
+    Get.find<Config>().waitingForResponse.value = true;
     try {
       http.Response response = await http.post(
           Uri.parse("${Get.find<Config>().serverUrl}/auth/signin"),
@@ -38,9 +38,9 @@ class AuthServices {
           context: context,
           
           );
-      Get.find<Config>().waitingForSigninRes.value = false;
+      Get.find<Config>().waitingForResponse.value = false;
     } catch (e) {
-      Get.find<Config>().waitingForSigninRes.value = false;
+      Get.find<Config>().waitingForResponse.value = false;
       //logging
       Get.find<AppLogger>()
           .logger
@@ -54,7 +54,7 @@ class AuthServices {
       required String email,
       required String password,
       required BuildContext context}) async {
-    Get.find<Config>().waitingForSignupRes.value = true;
+    Get.find<Config>().waitingForResponse.value = true;
     try {
       User user = User(
           id: "",
@@ -80,9 +80,9 @@ class AuthServices {
             Get.find<AppLogger>().logger.i(
                 "user signed up successfuly -> ${Get.find<UserProvider>().user.toJson()} // with token ${Get.find<UserProvider>().token}");
           }, context: context);
-      Get.find<Config>().waitingForSignupRes.value = false;
+      Get.find<Config>().waitingForResponse.value = false;
     } catch (e) {
-      Get.find<Config>().waitingForSignupRes.value = false;
+      Get.find<Config>().waitingForResponse.value = false;
       //logging
       Get.find<AppLogger>()
           .logger

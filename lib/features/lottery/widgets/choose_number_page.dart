@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottery/helpers/show_custom_alertdialog.dart';
-import 'package:get/get.dart';
 import 'package:lottery/models/lottery_card.dart';
 import 'package:lottery/models/lottery_slip.dart';
 import 'package:lottery/providers/app_provider.dart';
@@ -18,8 +17,9 @@ showChooseNumberPage(
     required List<int> choosenNumsList}) {
       //check for edit 
   List<int> choosenNums = choosenNumsList;
-  
+    int numbersIndex = -1;
     if(choosenNums.isNotEmpty){
+      numbersIndex = lotterySlip.numbers.indexOf(choosenNumsList);
       lotterySlip.numbers.remove(choosenNums);
     }
   
@@ -77,7 +77,11 @@ showChooseNumberPage(
                         element['isChoosen'] = false;
                       }
                       
-                      lotterySlip.numbers.add(choosenNums);      
+                      if (numbersIndex>=0){
+                        lotterySlip.numbers.insert(numbersIndex, choosenNums);
+                      }else{
+                        lotterySlip.numbers.add(choosenNums); 
+                      }     
                             
                       Navigator.pop(context);
                     } else {

@@ -167,6 +167,8 @@ class _LotteryPaymentScreenState extends State<LotteryPaymentScreen> {
                         });
                       }),
                     ),
+                    //todo complete here soon
+                    _payMentMethod == PayMentMethod.crypto ? Container(color: Colors.yellow,height: 40,):const SizedBox(height: 10,),
                     ListTile(
                       title: const Text('Credit Card',style: TextStyle(fontWeight: FontWeight.bold),),
                       leading: Radio(value: PayMentMethod.credit, groupValue: _payMentMethod, onChanged: (PayMentMethod? val){

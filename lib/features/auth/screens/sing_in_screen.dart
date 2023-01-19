@@ -75,7 +75,7 @@ class SigninScreen extends StatelessWidget {
             ]),
           ),
         ),
-        Obx(() => Get.find<Config>().waitingForSigninRes.value == false
+        Obx(() => Get.find<Config>().waitingForResponse.value == false
             ? Container()
             : const LoadingOpacityScreen())
       ]),

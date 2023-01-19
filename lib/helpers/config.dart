@@ -16,7 +16,6 @@ class Config{
   String lotteryPayMentPageRouteName = '/payment';
   //server connection configs
   String serverUrl = "http://localhost:3000";
-  var waitingForSigninRes = false.obs;
-  var waitingForSignupRes = false.obs;
+  var waitingForResponse = false.obs;
   Config({required this.mainDirectory});
 }

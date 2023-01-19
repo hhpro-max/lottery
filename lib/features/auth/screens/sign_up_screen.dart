@@ -94,7 +94,7 @@ class SignUpScreen extends StatelessWidget {
             ]),
           ),
         ),
-        Obx(() => Get.find<Config>().waitingForSignupRes.value == false
+        Obx(() => Get.find<Config>().waitingForResponse.value == false
             ? Container()
             : const LoadingOpacityScreen())
       ]),

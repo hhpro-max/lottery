@@ -32,17 +32,18 @@ class _LotteryPlayState extends State<LotteryPlay> {
   int slipNumberIndex = 0;
 
   List<Map> numbers = [];
-  LotterySlip slip = LotterySlip(lotteryId: "", userId: "", numbers: []);
+  LotterySlip slip = LotterySlip(lotteryId: '', userId: "", numbers: []);
   @override
   void initState() {
     super.initState();
-    itemCount = Get.find<AppProvider>().choosenNumbersList.length + 1;
+    slip.lotteryId = widget.lotteryCard.id;
     for (LotterySlip element in Get.find<AppProvider>().choosenNumbersList) {
-      if (element.lotteryId == widget.lotteryCard.id) {
+      if (element.lotteryId == slip.lotteryId) {
         slip = element;
         break;
       }
     }
+    itemCount = slip.numbers.length + 1;
     numberCount = widget.lotteryCard.numberCount;
     numbers = List.generate(widget.lotteryCard.numberRange,
         (index) => {"number": index + 1, "isChoosen": false});
@@ -66,6 +67,20 @@ class _LotteryPlayState extends State<LotteryPlay> {
           }
         }
       }
+    }
+  }
+
+  updateUserSlips() {
+    bool isContainsSlip = false;
+    for (LotterySlip element in Get.find<AppProvider>().choosenNumbersList) {
+      if (element.lotteryId == slip.lotteryId) {
+        element = slip;
+        isContainsSlip = true;
+        break;
+      }
+    }
+    if (!isContainsSlip) {
+      Get.find<AppProvider>().choosenNumbersList.add(slip);
     }
   }
 
@@ -130,7 +145,6 @@ class _LotteryPlayState extends State<LotteryPlay> {
                                     deletDuplicateItems(context: context);
                                     rNumbers.sort();
                                     slip.numbers.add(rNumbers);
-                                    
 
                                     itemCount++;
                                   }
@@ -196,35 +210,79 @@ class _LotteryPlayState extends State<LotteryPlay> {
                         ),
                         index == itemCount - 1
                             ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    itemCount++;
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.add,
-                                  color: Get.isDarkMode
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                                style: IconButton.styleFrom(
-                                    shape: const CircleBorder()),
-                              ),
-                              Row(children: [Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text('total : ${slip.numbers.length*widget.lotteryCard.price} \$',style: Theme.of(context).textTheme.bodyText1,),
-                              ),customCommonElevatedButton(title: "lets play",onPressed: (){
-                                if(slip.numbers.isNotEmpty){
-                                  Get.toNamed('/payment',arguments: [widget.lotteryCard,slip]);
-                                }else{
-                                  showMyDialog(context: context, title: '', description: 'pls choose at least one line of numbers', barrierDismissible: true);
-                                }
-                              })],)
-                              ],
-                            )
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        itemCount++;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Get.isDarkMode
+                                          ? Colors.black
+                                          : Colors.white,
+                                    ),
+                                    style: IconButton.styleFrom(
+                                        shape: const CircleBorder()),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'total : ${slip.numbers.length * widget.lotteryCard.price} \$',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyText1,
+                                        ),
+                                      ),
+                                      customCommonElevatedButton(
+                                          title: "lets play",
+                                          onPressed: () {
+                                            updateUserSlips();
+                                            if (Get.find<UserProvider>()
+                                                .user
+                                                .id
+                                                .isEmpty) {
+                                              return showMyDialog(
+                                                  actions: [
+                                                    TextButton(onPressed: (){
+                                                      Navigator.pop(context);
+                                                      Get.offNamed('/signin');
+                                                    }, child: const Text('lets signin or signup'))
+                                                  ],
+                                                  context: context,
+                                                  title: 'auth failed',
+                                                  description:
+                                                      'please login first',
+                                                  barrierDismissible: false);
+                                            }
+                                            if (slip.numbers.isNotEmpty) {
+                                              slip.userId =
+                                                  Get.find<UserProvider>()
+                                                      .user
+                                                      .id;
+                                              Get.toNamed('/payment',
+                                                  arguments: [
+                                                    widget.lotteryCard,
+                                                    slip
+                                                  ]);
+                                            } else {
+                                              showMyDialog(
+                                                  context: context,
+                                                  title: '',
+                                                  description:
+                                                      'pls choose at least one line of numbers',
+                                                  barrierDismissible: true);
+                                            }
+                                          })
+                                    ],
+                                  )
+                                ],
+                              )
                             : Container()
                       ],
                     ),
